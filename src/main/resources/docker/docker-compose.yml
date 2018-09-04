@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  postgres:
+    restart: always
+    image: postgres:10
+    container_name: postgres-petclinic
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_DB: petclinic
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: petclinic
+    volumes:
+    - ../db/postgresql/initDB.sql:/docker-entrypoint-initdb.d/initDB.sql
+    - ../db/postgresql/populateDB.sql:/docker-entrypoint-initdb.d/populateDB.sql
